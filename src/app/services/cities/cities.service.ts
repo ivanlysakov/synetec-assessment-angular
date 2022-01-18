@@ -17,6 +17,19 @@ export class CitiesService {
     return this._citiesEndpoint.get();
   }
 
+  // delete metod on backend implemented incorectly
+  // for fix this need to change: 
+
+  // public void Delete(City cityToDelete)
+  // {
+  //     CityInfoContext.Cities.ToList().Remove(cityToDelete);
+  // }
+  
+  // public void Delete(City cityToDelete)
+  // {
+  //     CityInfoContext.Cities.Remove(cityToDelete);
+  // }
+
   deleteCity(id: any) {
     return this._citiesEndpoint.delete(id)
   }
