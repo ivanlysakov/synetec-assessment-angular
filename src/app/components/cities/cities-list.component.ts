@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ICity } from "../../models/city.model";
+import { CitiesService } from "../../services/cities/cities.service";
 
 @Component ({
     selector: 'cities-list',
@@ -10,8 +11,24 @@ import { ICity } from "../../models/city.model";
 export class CitiesListComponent implements OnInit{
 
     cities: ICity[];
-    constructor() {}
+    constructor(private citiesService: CitiesService) {}
 
     ngOnInit(): void {
+         this.getCities()
     }
+
+    getCities(){
+        this.citiesService.getList().subscribe((response: ICity[])=>{
+            this.cities = response;
+        });
+    }
+
+    delete(id: any){
+        this.citiesService.deleteCity(id).subscribe(response=>{
+            this.getCities()
+        });
+    }
+
+    
+
 }
